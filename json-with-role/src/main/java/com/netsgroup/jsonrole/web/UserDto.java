@@ -6,7 +6,7 @@ import org.springframework.security.core.GrantedAuthority;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.netsgroup.jsonrole.config.JsonRoleView;
+import com.netsgroup.jsonrole.annotation.JsonSerializeOnRoleMatch;
 
 @JsonInclude(value = Include.NON_NULL)
 public class UserDto {
@@ -15,13 +15,13 @@ public class UserDto {
 	
 	public Collection<? extends GrantedAuthority> roles;
 
-	@JsonRoleView(hasRoles = {"ROLE_PIPPO"})
+	@JsonSerializeOnRoleMatch(hasRoles = {"ROLE_PIPPO"})
 	public String alwaysAvailableField;
 	
-	@JsonRoleView(hasRoles = {"ROLE_USER" , "ROLE_ADMIN" })
+	@JsonSerializeOnRoleMatch(hasRoles = {"ROLE_USER" , "ROLE_ADMIN" })
 	public String userField;
 	
-	@JsonRoleView(hasRoles = {"ROLE_ADMIN"})
+	@JsonSerializeOnRoleMatch(hasRoles = {"ROLE_ADMIN"})
 	public String adminField;
 
 	public void setName(String name) {
